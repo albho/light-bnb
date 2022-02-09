@@ -23,3 +23,11 @@ CREATE TABLE properties (
   post_code VARCHAR(255),
   active BOOLEAN,
 );
+
+CREATE TABLE reservations (
+  id SERIAL PRIMARY KEY,
+  start_date DATE,
+  end_date DATE,
+  property_id INTEGER NOT NULL REFERENCES properties(id) ON DELETE CASCADE,
+  guest_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+);
