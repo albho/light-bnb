@@ -120,7 +120,7 @@ const getAllProperties = function (options, limit = 10) {
   
   let joinWord = "WHERE ";
   if (options.owner_id) {
-    queryParams.push(`%${options.owner_id}%`);
+    queryParams.push(`${options.owner_id}`);
 
     queryString += joinWord;
     joinWord = "AND ";
@@ -162,9 +162,6 @@ const getAllProperties = function (options, limit = 10) {
   queryString += `
   ORDER BY cost_per_night
   LIMIT $${queryParams.length};`;
-
-  console.log(queryString);
-  console.log(queryParams);
 
   return pool
     .query(queryString, queryParams)
