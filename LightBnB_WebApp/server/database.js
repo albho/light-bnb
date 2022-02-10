@@ -1,5 +1,5 @@
-const properties = require("./json/properties.json");
-const users = require("./json/users.json");
+// const properties = require("./json/properties.json");
+// const users = require("./json/users.json");
 const { Pool } = require("pg");
 
 const pool = new Pool({
@@ -9,7 +9,6 @@ const pool = new Pool({
   database: "lightbnb",
 });
 /// Users
-
 /**
  * Get a single user from the database given their email.
  * @param {String} email The email of the user.
@@ -28,7 +27,6 @@ const getUserWithEmail = function (email) {
     .then(result => result.rows[0])
     .catch(() => null);
 };
-exports.getUserWithEmail = getUserWithEmail;
 
 /**
  * Get a single user from the database given their id.
@@ -48,7 +46,6 @@ const getUserWithId = function (id) {
     .then(result => result.rows[0])
     .catch(() => null);
 };
-exports.getUserWithId = getUserWithId;
 
 /**
  * Add a new user to the database.
@@ -69,7 +66,6 @@ const addUser = function (user) {
     .then(result => result.rows[0])
     .catch(() => null);
 };
-exports.addUser = addUser;
 
 /// Reservations
 
@@ -100,7 +96,6 @@ const getAllReservations = function (guest_id, limit = 10) {
     .then(result => result.rows)
     .catch(() => null);
 };
-exports.getAllReservations = getAllReservations;
 
 /// Properties
 
@@ -168,7 +163,6 @@ const getAllProperties = function (options, limit = 10) {
     .then(result => result.rows)
     .catch(() => null);
 };
-exports.getAllProperties = getAllProperties;
 
 /**
  * Add a property to the database
@@ -234,4 +228,12 @@ const addProperty = function (property) {
     .then(result => result.rows[0])
     .catch(() => null);
 };
-exports.addProperty = addProperty;
+
+module.exports = {
+  getUserWithEmail,
+  getUserWithId,
+  addUser,
+  getAllReservations,
+  getAllProperties,
+  addProperty,
+};
